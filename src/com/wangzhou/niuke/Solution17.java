@@ -49,6 +49,6 @@ class TreeNode1 {
 
     @Override
     public String toString() {
-        return  String.valueOf(this.val);
+        return  String.valueOf(this.left.val+" "+this.val+" "+this.right.val);
     }
 }

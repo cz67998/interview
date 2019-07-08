@@ -47,9 +47,33 @@ public class Solution52 {
         return false;
     }
 
+    public boolean match2(char[] str, char[] pattern) {
+        if (str == null && pattern == null) return false;
+        return matchCore1(str, 0, pattern, 0);
+    }
+
+    private boolean matchCore1(char[] str, int strIndex, char[] pattern, int patternIndex) {
+        int m = str.length;
+        int n = pattern.length;
+        if (strIndex == m && patternIndex == n) return true;
+        if (strIndex != m && patternIndex == n) return false;
+        if (patternIndex + 1 != n && pattern[patternIndex + 1] == '*') {
+            if (strIndex != m && str[strIndex] == pattern[patternIndex] || (strIndex != m && pattern[patternIndex] == '.')) {
+                return matchCore1(str, strIndex, pattern, patternIndex + 2) ||
+                        matchCore1(str, strIndex + 1, pattern, patternIndex + 2) ||
+                        matchCore1(str, strIndex + 1, pattern, patternIndex);
+            }else {
+                return matchCore1(str, strIndex, pattern, patternIndex + 2);
+            }
+        }
+        if(strIndex!=m&&str[strIndex]==pattern[patternIndex]||(strIndex!=m&&pattern[patternIndex]=='.')){
+            return matchCore1(str, strIndex+1, pattern, patternIndex + 1);
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         Solution52 solution52 = new Solution52();
-        System.out.println(solution52.match1(new char[]{}, new char[]{'.', '*'}));
+        System.out.println(solution52.match1(new char[]{'a'}, new char[]{'a', 'b', '*'}));
     }
 }
