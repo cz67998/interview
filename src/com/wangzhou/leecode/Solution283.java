@@ -10,75 +10,91 @@ import java.util.List;
  * Time:15:12
  **/
 public class Solution283 {
-    public void moveZeroes4(int[] nums) {
-        if (nums.length == 0) {
-            return;
-        }
-        int n=nums.length;
-        int k=0;//nums中，[0...k)的元素均为非0的元素
-        //遍历到第i个元素，保证[0...i]中的所有非0元素
-        //都按照顺序排列在[0,,,k)中
-        //同时[k,i)为0
+    public void moveZeroes5(int[] nums) {
+        int n = nums.length;
+        if (n == 0) return;
+        int k = 0;
         for (int i = 0; i < n; i++) {
-            if(nums[i]!=0){
-                if(i!=k){
-                    swap(nums,i,k++);
-                }else {
-                    k++;
-                }
-            }
-        }
-    }
-    public void moveZeroes3(int[] nums) {
-        if (nums.length == 0) {
-            return;
-        }
-        int n=nums.length;
-        int k=0;//nums中，[0...k)的元素均为非0的元素
-        //遍历到第i个元素，保证[0...i]中的所有非0元素
-        //都按照顺序排列在[0,,,k)中
-        //同时[k,i)为0
-        for (int i = 0; i < n; i++) {
-            if(nums[i]!=0){
-                swap(nums,i,k++);
-            }
-        }
-    }
-
-    private void swap(int[] nums, int i, int k) {
-        int temp =nums[i];
-        nums[i]=nums[k];
-        nums[k]=temp;
-    }
-
-    public void moveZeroes2(int[] nums) {
-        if (nums.length == 0) {
-            return;
-        }
-        int n=nums.length;
-        int k=0;//nums中，[0...k)的元素均为非0的元素
-        for (int i = 0; i < n; i++) {
-            if(nums[i]!=0){
-              nums[k++]=nums[i];
+            if (nums[i] != 0) {
+                nums[k++] = nums[i];
             }
         }
         for (int i = k; i < n; i++) {
             nums[i]=0;
         }
     }
-    public void moveZeroes1(int[] nums) {
-        List list =new ArrayList();
-        int n=nums.length;
+
+    public void moveZeroes4(int[] nums) {
+        if (nums.length == 0) {
+            return;
+        }
+        int n = nums.length;
+        int k = 0;//nums中，[0...k)的元素均为非0的元素
+        //遍历到第i个元素，保证[0...i]中的所有非0元素
+        //都按照顺序排列在[0,,,k)中
+        //同时[k,i)为0
         for (int i = 0; i < n; i++) {
-            if(nums[i]!=0){
+            if (nums[i] != 0) {
+                if (i != k) {
+                    swap(nums, i, k++);
+                } else {
+                    k++;
+                }
+            }
+        }
+    }
+
+    public void moveZeroes3(int[] nums) {
+        if (nums.length == 0) {
+            return;
+        }
+        int n = nums.length;
+        int k = 0;//nums中，[0...k)的元素均为非0的元素
+        //遍历到第i个元素，保证[0...i]中的所有非0元素
+        //都按照顺序排列在[0,,,k)中
+        //同时[k,i)为0
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != 0) {
+                swap(nums, i, k++);
+            }
+        }
+    }
+
+    private void swap(int[] nums, int i, int k) {
+        int temp = nums[i];
+        nums[i] = nums[k];
+        nums[k] = temp;
+    }
+
+    public void moveZeroes2(int[] nums) {
+        if (nums.length == 0) {
+            return;
+        }
+        int n = nums.length;
+        int k = 0;//nums中，[0...k)的元素均为非0的元素
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != 0) {
+                nums[k++] = nums[i];
+            }
+        }
+        for (int i = k; i < n; i++) {
+            nums[i] = 0;
+        }
+    }
+
+    public void moveZeroes1(int[] nums) {
+        List list = new ArrayList();
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != 0) {
                 list.add(nums[i]);
             }
         }
-        for (int i = list.size(); i <n ; i++) {
+        for (int i = list.size(); i < n; i++) {
             list.add(0);
         }
         for (int i = 0; i < list.size(); i++) {
-            nums[i]=(Integer) list.get(i);
+            nums[i] = (Integer) list.get(i);
         }
     }
 

@@ -9,6 +9,30 @@ import java.math.BigDecimal;
  * Time:21:38
  **/
 public class Solution2 {
+    public ListNode addTwoNumbers1(ListNode l1, ListNode l2) {
+        ListNode ans = new ListNode(-1);
+        ListNode dummy = ans;
+        int carry = 0;
+        while (l1 != null || l2 != null) {
+            carry = carry / 10;
+            if (l1 != null) {
+                carry += l1.val;
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                carry += l2.val;
+                l2 = l2.next;
+            }
+            ListNode listNode = new ListNode(carry % 10);
+            ans.next = listNode;
+            ans = ans.next;
+        }
+        if(carry/10==1){
+            ans.next=new ListNode(1);
+        }
+        return dummy.next;
+    }
+
     ListNode head;
 
     public class ListNode {
@@ -81,12 +105,12 @@ public class Solution2 {
                 carry += l2.val;
                 l2 = l2.next;
             }
-            ListNode node=new ListNode(carry%10);
-            dummyNode.next=node;
-            dummyNode=dummyNode.next;
+            ListNode node = new ListNode(carry % 10);
+            dummyNode.next = node;
+            dummyNode = dummyNode.next;
         }
-        if(carry/10==1){
-            dummyNode.next=new ListNode(1);
+        if (carry / 10 == 1) {
+            dummyNode.next = new ListNode(1);
         }
         return head.next;
 //        int a = reverse(l1);
